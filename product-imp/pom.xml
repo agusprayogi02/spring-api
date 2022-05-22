@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>modul1-app</artifactId>
+    <artifactId>product-imp</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -17,18 +17,8 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.8</version>
-        </dependency>
-        <dependency>
             <groupId>com.smk</groupId>
             <artifactId>product-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.smk</groupId>
-            <artifactId>product-imp</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
