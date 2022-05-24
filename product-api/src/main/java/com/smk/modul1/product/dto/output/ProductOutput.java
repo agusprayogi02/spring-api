@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor()
 public class ProductOutput {
     private Long id;
     private String name;
