@@ -1,18 +1,20 @@
 package com.smk.modul1.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +29,8 @@ public class Product {
     private Double price;
 
     @ManyToOne()
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    @JoinColumn(name = "categoryId", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Category category;
 
     @Column(name = "create_at")
