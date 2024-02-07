@@ -1,16 +1,20 @@
 package com.smk.modul1.dto.input;
 
-import lombok.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductInput {
-    //regex only alphabet and space
+    // regex only alphabet and space
     @Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Only alphabet and space")
     @NotBlank(message = "Product name cannot be empty")
     private String name;

@@ -1,16 +1,25 @@
 package com.smk.modul1.product.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.smk.modul1.base.BaseController;
 import com.smk.modul1.base.BaseResponse;
 import com.smk.modul1.dto.input.ProductInput;
 import com.smk.modul1.dto.output.ProductOutput;
 import com.smk.modul1.product.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
@@ -38,7 +47,7 @@ public class ProductController extends BaseController {
 
     @PutMapping("/{id}")
     public ResponseEntity<BaseResponse<ProductOutput>> update(@PathVariable Long id,
-                                                @Valid @RequestBody ProductInput productInput) {
+            @Valid @RequestBody ProductInput productInput) {
         ProductOutput product = service.updateProduct(productInput, id);
         return ResponseEntity.ok(new BaseResponse<>(product));
     }
@@ -50,7 +59,8 @@ public class ProductController extends BaseController {
     }
 
     @PostMapping("/saveAll")
-    public ResponseEntity<BaseResponse<List<ProductOutput>>> saveAllProduct(@Valid @RequestBody Iterable<ProductInput> inputs){
+    public ResponseEntity<BaseResponse<List<ProductOutput>>> saveAllProduct(
+            @Valid @RequestBody Iterable<ProductInput> inputs) {
         List<ProductOutput> rests = service.multipleProduct(inputs);
         return ResponseEntity.ok(new BaseResponse<>(rests));
     }

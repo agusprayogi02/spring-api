@@ -1,17 +1,18 @@
 package com.smk.modul1.category.service;
 
-import com.smk.modul1.dto.input.CategoryInput;
-import com.smk.modul1.dto.output.CategoryOutput;
-import com.smk.modul1.category.repository.CategoryRepository;
-import com.smk.modul1.model.Category;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.commons.collections4.IterableUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.smk.modul1.category.repository.CategoryRepository;
+import com.smk.modul1.dto.input.CategoryInput;
+import com.smk.modul1.dto.output.CategoryOutput;
+import com.smk.modul1.model.Category;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -24,6 +25,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryOutput addOne(CategoryInput input) {
         Category category = mapper.map(input, Category.class);
+        if (category == null) {
+            return null;
+        }
         this.repository.save(category);
         return mapper.map(category, CategoryOutput.class);
     }
@@ -41,6 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryOutput getOne(Long id) {
+        if (id == null) {
+            return null;
+        }
         Optional<Category> category = this.repository.findById(id);
         return category.map(value -> mapper.map(value, CategoryOutput.class)).orElse(null);
     }
